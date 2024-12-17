@@ -1,8 +1,10 @@
+import { CartContext } from '@/utils/ContextReducer';
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 const Card = (props) => {
     const data = props.foodData;
+    const { state, dispatch } = useContext(CartContext)
     const priceOptions = Object.keys(data.price);
     const [qty, setQty] = useState(1);
     const [size, setSize] = useState(priceOptions[0]);
@@ -15,7 +17,38 @@ const Card = (props) => {
         setSize(e.target.value);
     };
 
-    let finalPrice = qty * data.price[size];
+    const handleAddToCart = async () => {
+
+        const updatedItem = await state.find((item) => item.tempId === data.id + size);
+
+        if (!updatedItem) {
+            dispatch({
+                type: "ADD",
+                id: data.id,
+                tempId: data.id + size,
+                name: data.name,
+                price: finalPrice,
+                qty: qty,
+                priceOptions: size,
+                img: data.img
+            })
+        }
+        // console.log("state",state);
+        // if (updatedItem) {
+        //     dispatch({
+        //         type: "UPDATE",
+        //         id: data.id,
+        //         tempId: data.id + size,
+        //         name: data.name,
+        //         price: finalPrice,
+        //         qty: qty,
+        //         priceOptions: size,
+        //         img: data.img
+        //     })
+        // }
+
+    }
+    let finalPrice = qty * parseInt(data.price[size]);
     return (
         <div className="box">
             <div className="w-80 rounded-lg bg-white overflow-hidden dark:bg-black border-gradient h-[500px] flex flex-col">
@@ -62,7 +95,7 @@ const Card = (props) => {
 
                 {/* Footer Section */}
                 <div className="flex p-4 font-bold justify-between mt-auto">
-                    <button className="border text-gray-900 dark:text-gray-100 font-bold dark:border-gray-400 border-gray-900 rounded mr-2 p-2 hover:bg-gradient-to-r from-indigo-700 via-violet-700 to-orange-700 hover:text-gray-100">
+                    <button className="border text-gray-900 dark:text-gray-100 font-bold dark:border-gray-400 border-gray-900 rounded mr-2 p-2 hover:bg-gradient-to-r from-indigo-700 via-violet-700 to-orange-700 hover:text-gray-100" onClick={handleAddToCart}>
                         Add to cart
                     </button>
                     <p className="p-4 text-xl">${finalPrice}</p>
