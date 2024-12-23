@@ -21,6 +21,11 @@ const reducer = (state, action) => {
                 }
             })
             return arr;
+
+            case "REMOVE" :
+                let newArr = [...state];
+                newArr.splice(action.index, 1);
+
         default:
             console.log("Action Type...");
 

@@ -33,19 +33,15 @@ const Card = (props) => {
                 img: data.img
             })
         }
-        // console.log("state",state);
-        // if (updatedItem) {
-        //     dispatch({
-        //         type: "UPDATE",
-        //         id: data.id,
-        //         tempId: data.id + size,
-        //         name: data.name,
-        //         price: finalPrice,
-        //         qty: qty,
-        //         priceOptions: size,
-        //         img: data.img
-        //     })
-        // }
+        console.log("state", state);
+        if (updatedItem) {
+            dispatch({
+                type: "UPDATE",
+                tempId: data.id + size,
+                price: finalPrice,
+                qty: qty,
+            })
+        }
 
     }
     let finalPrice = qty * parseInt(data.price[size]);
