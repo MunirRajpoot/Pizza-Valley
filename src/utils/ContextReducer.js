@@ -22,9 +22,29 @@ const reducer = (state, action) => {
             })
             return arr;
 
-            case "REMOVE" :
-                let newArr = [...state];
-                newArr.splice(action.index, 1);
+        case "REMOVE":
+            let newArr = [...state];
+            newArr.splice(action.index, 1);
+        case "INCREMENT":
+            let incArr = [...state];
+            incArr.find((food, index) => {
+                if (food.tempId === action.tempId) {
+                    incArr[index] = { ...food, qty: parseInt(food.qty) + 1, price: action.unitPrice + food.price }
+                }
+            })
+            return incArr;
+
+        case "DECREMENT":
+            let decArr = [...state];
+            decArr.find((food, index) => {
+                if (food.tempId === action.tempId) {
+                    decArr[index] = { ...food, qty: parseInt(food.qty) - 1, price: food.price - action.unitPrice }
+                }
+            })
+            return decArr;
+        case "DROP":
+            let emptyArr = [];
+            return emptyArr;
 
         default:
             console.log("Action Type...");
