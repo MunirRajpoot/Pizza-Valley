@@ -48,10 +48,11 @@ export default Item;
 
 export async function getServerSideProps(context) {
 
-    const {item} = context.query;
-    const res = await fetch(baseUrl + "/api/getDataById", { method: "POST",headers: { "Content-Type": "application/json" },
+    const { item } = context.query;
+    const res = await fetch(baseUrl + "/api/getDataById", {
+        method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ item: item })
-     });
+    });
     let data = await res.json();
     return {
         props: {
