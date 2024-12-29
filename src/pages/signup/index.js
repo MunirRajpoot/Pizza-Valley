@@ -1,12 +1,39 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { useState } from 'react'
 
 const Signup = () => {
+  const router = useRouter();
   const [credentials, setCredentials] = useState({ name: "", email: "", password: "", location: "" })
-  const handleSubmit = (e) => {
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const response = await fetch("/api/userSignUp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: credentials.name,
+        email: credentials.email,
+        password: credentials.password,
+        location: credentials.location
+      })
+    })
+    const res = await response.json();
+
+    if (res.success) {
+      localStorage.setItem("token", res.authToken);
+      localStorage.setItem("userEmail", credentials.email)
+      router.push("/");
+    }
+    else {
+      alert("Enter Valid Credentials...")
+    }
   }
+
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
@@ -78,4 +105,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default Signup;

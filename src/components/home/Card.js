@@ -62,43 +62,43 @@ const Card = (props) => {
                             {data.description}
                         </p>
                     </div>
-
-                    {/* Actions Section */}
-                    <div className="flex px-4 justify-between">
-                        <select
-                            className="h-10 p-1 text-black hover:font-bold font:semi-bold cursor-pointer dark:text-gray-300 border border-black dark:border-gray-400 rounded"
-                            onChange={handleQty}
-                        >
-                            {Array.from(Array(6), (e, i) => {
-                                return (
-                                    <option key={i + 1} value={i + 1}>
-                                        {i + 1}
-                                    </option>
-                                );
-                            })}
-                        </select>
-                        <select
-                            className="h-10 p-1 text-black hover:font-bold font:semi-bold cursor-pointer dark:text-gray-300 border border-black dark:border-gray-400 rounded"
-                            onChange={handleSize}
-                        >
-                            {priceOptions.map((options) => {
-                                return (
-                                    <option key={options} className="uppercase" value={options}>
-                                        {options}
-                                    </option>
-                                );
-                            })}
-                        </select>
-                    </div>
-
-                    {/* Footer Section */}
-                    <div className="flex p-4 font-bold justify-between mt-auto">
-                        <button className="border text-gray-900 dark:text-gray-100 font-bold dark:border-gray-400 border-gray-900 rounded mr-2 p-2 hover:bg-gradient-to-r from-indigo-700 via-violet-700 to-orange-700 hover:text-gray-100" onClick={handleAddToCart}>
-                            Add to cart
-                        </button>
-                        <p className="p-4 text-xl">${finalPrice}</p>
-                    </div>
                 </Link>
+                {/* Actions Section */}
+                <div className="flex px-4 justify-between">
+                    <select
+                        className="h-10 p-1 text-black hover:font-bold font:semi-bold cursor-pointer dark:text-gray-300 border border-black dark:border-gray-400 rounded"
+                        onChange={handleQty}
+                    >
+                        {Array.from(Array(6), (e, i) => {
+                            return (
+                                <option key={i + 1} value={i + 1}>
+                                    {i + 1}
+                                </option>
+                            );
+                        })}
+                    </select>
+                    <select
+                        className="h-10 p-1 text-black hover:font-bold font:semi-bold cursor-pointer dark:text-gray-300 border border-black dark:border-gray-400 rounded"
+                        onChange={handleSize}
+                    >
+                        {priceOptions.map((options) => {
+                            return (
+                                <option key={options} className="uppercase" value={options}>
+                                    {options}
+                                </option>
+                            );
+                        })}
+                    </select>
+                </div>
+
+                {/* Footer Section */}
+                <div className="flex p-4 font-bold justify-between mt-auto">
+                    <button className="border text-gray-900 dark:text-gray-100 font-bold dark:border-gray-400 border-gray-900 rounded mr-2 p-2 hover:bg-gradient-to-r from-indigo-700 via-violet-700 to-orange-700 hover:text-gray-100" onClick={handleAddToCart}>
+                        Add to cart
+                    </button>
+                    <p className="p-4 text-xl">${finalPrice}</p>
+                </div>
+
             </div>
         </div>
     );
