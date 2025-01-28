@@ -17,6 +17,7 @@ export default async function handler(req, res) {
             });
             await pizza.save();
         }
+        
 
         res.status(200).json({ Data: "Data Save ho gya 🥳🥳🥳" });
     }

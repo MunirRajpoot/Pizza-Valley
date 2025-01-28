@@ -32,9 +32,9 @@ export default async function handler(req, res) {
                 },
             };
             const authToken = jwt.sign(data, jwtSecret);
-
+            const isAdmin = await user.isAdmin;
             success = true;
-            res.status(200).json({ success, authToken });
+            res.status(200).json({ success, authToken, isAdmin });
         } catch (error) {
             // Handle errors
             console.error(error.message);

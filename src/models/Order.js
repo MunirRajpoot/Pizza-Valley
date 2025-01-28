@@ -1,20 +1,12 @@
 import mongoose from "mongoose";
-import { unique } from "next/dist/build/utils";
 
-const orderSchema = new mongoose.Schema({
-   
+const orderSchema = new mongoose.Schema(
+  {
     email: { type: String, required: true, unique: true },
-    order_date:{
-        type:Array,
-        required:true
-    }
+    order_data: { type: Array, required: true }, // Adjusted for proper array structure
+  },
+  { timestamps: true }
+);
 
-},
-    { timestamps: true }
-
-
-)
-
-const Orders = mongoose.models.Orders || mongoose.model('Orders', orderSchema);
-
-export default Orders;
+const Order = mongoose.models.Order || mongoose.model("Order", orderSchema);
+export default Order;
