@@ -4,7 +4,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className='text-white-100 bg-gradient-to-r from-indigo-700 via-violet-700 to-orange-700 body-font'>
+    <footer className='text-white-100 bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-700 body-font'>
       <div className='container mx-auto px-4 md:px-8 flex flex-wrap p-3 flex-col md:flex-row items-center'>
         <Link href={"/"} className='flex title-font font-extrabold items-center uppercase text-gray-100'>
           <Image src={'/pizza.png'} alt='Navbar-logo' height={40} width={40} />

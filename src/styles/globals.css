@@ -29,7 +29,7 @@ body {
   border-radius: 8px;
   pointer-events: none;
   padding: 2px;
-  background: linear-gradient(45deg, #c2410c, #6d28d9, #4338ca);
+  background: linear-gradient(45deg, #c2410c, #fb923c, #f97316);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -50,7 +50,7 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  background: linear-gradient(-45deg, #c2410c, #6d28d9, #4338ca);
+  background: linear-gradient(45deg, #c2410c, #fb923c, #f97316);
   transform: translate3d(0px, 30px, 10px) scale(0.75);
   filter: blur(50px);
   opacity: var(--opacity-value);

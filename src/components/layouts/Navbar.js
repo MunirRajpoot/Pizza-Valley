@@ -16,7 +16,7 @@ const Navbar = () => {
 
     if (!mounted) return null;
     return (
-        <header className='text-white-100 sticky top-0 z-50 bg-gradient-to-r from-indigo-700 via-violet-700 to-orange-700 body-font'>
+        <header className='text-white-100 sticky top-0 z-50 bg-gradient-to-r from-orange-500 via-orange-400 to-orange-700  body-font'>
             <div className='container mx-auto px-6 lg:px-10 py-1'> {/* Added padding inside container */}
                 <div className='flex flex-wrap p-3 flex-col md:flex-row items-center'>
                     <Link href={"/"} className='flex title-font font-extrabold items-center uppercase text-gray-100'>
