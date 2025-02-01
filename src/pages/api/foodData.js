@@ -2,12 +2,22 @@ import pizzaData from "@/models/PizzaData";
 import db from "../../utils/db";
 
 export default async function handler(req, res) {
-    // Enable CORS
-    res.setHeader("Access-Control-Allow-Origin", "https://pizza-valley.vercel.app"); // Make sure this matches your Vercel URL
+    // Enable CORS for multiple origins
+    const allowedOrigins = [
+        'https://pizza-valley.vercel.app',
+        'https://pizza-valley-qqrwwq15q-developer-5k.vercel.app',
+    ];
+
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    } else {
+        res.setHeader('Access-Control-Allow-Origin', 'https://pizza-valley.vercel.app'); // default fallback
+    }
+
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-    // Handle preflight requests (OPTIONS)
     if (req.method === "OPTIONS") {
         return res.status(200).end();
     }
