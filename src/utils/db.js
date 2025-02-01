@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const mongoURI = process.env.MONGO_URI;
+const mongoURI = process.env.NEXT_PUBLIC_MONGO_URI;
 
 const connection = {};
 
