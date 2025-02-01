@@ -2,6 +2,16 @@ import pizzaData from "@/models/PizzaData";
 import db from "@/utils/db";
 
 export default async function handler(req, res) {
+    // Enable CORS
+    res.setHeader("Access-Control-Allow-Origin", "https://pizza-valley.vercel.app");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+    // Handle preflight requests
+    if (req.method === "OPTIONS") {
+        return res.status(200).end();
+    }
+
     try {
         if (req.method === "POST") {
             // Validate incoming data
@@ -38,15 +48,17 @@ export default async function handler(req, res) {
             }
 
             await db.disconnect(); // Disconnect after saving data
-            res.status(200).json({ message: "Data saved successfully 🥳🥳🥳" });
+            return res.status(200).json({ message: "Data saved successfully 🥳🥳🥳" });
         }
 
         if (req.method === "GET") {
             await db.connect();
             const data = await pizzaData.find({});
             await db.disconnect(); // Disconnect after fetching data
-            res.status(200).json(data);
+            return res.status(200).json(data);
         }
+
+        res.status(405).json({ error: "Method Not Allowed" });
     } catch (error) {
         console.error("Error in API handler:", error);
         res.status(500).json({ error: "Internal Server Error", details: error.message });
