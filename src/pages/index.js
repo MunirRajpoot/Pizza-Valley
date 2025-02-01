@@ -14,7 +14,7 @@ export default function Home({ data }) {
         // Fetch data from the API
         const fetchData = async () => {
             try {
-                const response = await fetch(`${baseUrl}/api/foodData`, { method: "GET" });
+                const response = await fetch(`http://localhost:3000/api/foodData`, { method: "GET" });
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
