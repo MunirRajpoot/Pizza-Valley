@@ -2,7 +2,7 @@
 import Card from "@/components/home/Card";
 import CarouselComponent from "@/components/home/Carousel";
 import { useEffect, useState } from "react";
-import { baseUrl } from "@/utils/baseUrl";
+import { baseUrl } from "../utils/baseUrl";
 import Head from "next/head";
 
 export default function Home({ data }) {
