@@ -20,6 +20,11 @@ export default async function handler(req, res) {
                     return res.status(400).json({ error: `Missing required fields for item ${i + 1}` });
                 }
 
+                // Validate price object
+                if (typeof price !== "object" || !price.regular || !price.medium || !price.large) {
+                    return res.status(400).json({ error: `Invalid price structure for item ${i + 1}` });
+                }
+
                 const pizza = new pizzaData({
                     name,
                     category,
@@ -32,18 +37,18 @@ export default async function handler(req, res) {
                 await pizza.save();
             }
 
+            await db.disconnect(); // Disconnect after saving data
             res.status(200).json({ message: "Data saved successfully 🥳🥳🥳" });
-            await db.disconnect();
         }
 
         if (req.method === "GET") {
             await db.connect();
             const data = await pizzaData.find({});
+            await db.disconnect(); // Disconnect after fetching data
             res.status(200).json(data);
-            await db.disconnect();
         }
     } catch (error) {
         console.error("Error in API handler:", error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: "Internal Server Error", details: error.message });
     }
 }
