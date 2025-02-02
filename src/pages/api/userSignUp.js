@@ -3,7 +3,10 @@ import db from '@/utils/db';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-export const jwtSecret = "s2$a766hvtd"; // Store this in an environment variable for better security.
+export const jwtSecret = process.env.JWT_SECRET || "default_secret"; // Use the default secret if the JWT_SECRET environment variable is not set
+
+console.log("jwtSecret:", jwtSecret);
+
 
 export default async function handler(req, res) {
 
