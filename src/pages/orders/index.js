@@ -1,3 +1,4 @@
+import { baseUrl } from "../../utils/baseUrl";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -5,7 +6,7 @@ import React, { useEffect, useState } from "react";
 function Orders() {
   const [ordersData, setOrdersData] = useState([]);
   const fetchData = async () => {
-    await fetch("api/myOrdersData", {
+    await fetch(`${baseUrl}/api/myOrdersData`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

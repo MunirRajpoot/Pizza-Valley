@@ -1,3 +1,4 @@
+import { baseUrl } from "../../utils/baseUrl";
 import { CartContext } from "@/utils/ContextReducer";
 import { useRouter } from "next/router";
 
@@ -20,7 +21,7 @@ function Cart() {
     ) {
       router.push("/login");
     } else {
-      await fetch("api/ordersData", {
+      await fetch(`${baseUrl}/api/ordersData`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -343,7 +344,7 @@ function Cart() {
                     </div>
                     <button
                       onClick={handleCheckOut}
-                      className="border dark:border-gray-400 border-gray-900 rounded p-2 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-700  hover:text-gray-100 "
+                      className="border dark:border-gray-400 border-gray-900 rounded p-2 bg-gradient-to-r from-indigo-700 via-violet-700 to-orange-700  hover:text-gray-100 "
                     >
                       Check Out
                     </button>

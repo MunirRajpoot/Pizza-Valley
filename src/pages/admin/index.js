@@ -1,6 +1,7 @@
 import { set } from "mongoose";
 import React, { useEffect, useState } from "react";
 import Custom404 from "../404";
+import { baseUrl } from "../../utils/baseUrl";
 
 const sidesPriceOption = { single: "", double: "" };
 const pizzaPriceOption = { regular: "", medium: "", large: "" };
@@ -52,7 +53,7 @@ const Admin = () => {
         e.preventDefault();
         // console.log("Submitted Food Data:", foodData);
 
-        const response = await fetch("/api/createFoodData", {
+        const response = await fetch(`${baseUrl}/api/createFoodData`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -84,8 +85,7 @@ const Admin = () => {
                     <div
                         style={{
                             minHeight: "90vh",
-                            overflow: "scroll",
-
+                            overflow: "auto", // Changed from "scroll" to "auto"
                             backgroundImage:
                                 "url(https://img.freepik.com/free-photo/ingredients-near-pizza_23-2147772081.jpg?t=st=1738055501~exp=1738059101~hmac=20f3b32fa2d1810275e2a9c39f0527ee86d40df5f01d30c7666bfce359f2a4e5&w=996)",
                             backgroundSize: "cover",
@@ -168,7 +168,7 @@ const Admin = () => {
                                             Food Price
                                         </label>
                                         {Object.keys(foodData.price).map((key) => (
-                                            <div key={key} className="ml-4 mb-4">
+                                            <div key={key} className="mb-4"> {/* Removed ml-4 here */}
                                                 <label
                                                     htmlFor={key}
                                                     className="block text-gray-300 text-sm font-bold mb-2"

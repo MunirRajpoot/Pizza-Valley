@@ -1,4 +1,4 @@
-import { baseUrl } from '@/utils/baseUrl';
+import { baseUrl } from '../../utils/baseUrl';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
@@ -49,7 +49,7 @@ export default Item;
 export async function getServerSideProps(context) {
 
     const { item } = context.query;
-    const res = await fetch(baseUrl + "/api/getDataById", {
+    const res = await fetch(baseUrl + `${baseUrl}/api/getDataById`, {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ item: item })
     });

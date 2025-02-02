@@ -25,6 +25,7 @@ const reducer = (state, action) => {
         case "REMOVE":
             let newArr = [...state];
             newArr.splice(action.index, 1);
+            return newArr;
         case "INCREMENT":
             let incArr = [...state];
             incArr.find((food, index) => {

@@ -1,3 +1,4 @@
+import { baseUrl } from '../../utils/baseUrl'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -10,7 +11,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("/api/userSignUp", {
+    const response = await fetch(`${baseUrl}/api/userSignUp`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
