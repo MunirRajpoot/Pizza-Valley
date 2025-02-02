@@ -20,6 +20,7 @@ const Login = () => {
       })
     })
     const res = await response.json();
+console.log("res",res);
 
     if (res.success) {
       localStorage.setItem("token", res.authToken);
