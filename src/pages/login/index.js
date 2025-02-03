@@ -6,33 +6,41 @@ import React, { useState } from 'react'
 const Login = () => {
   const router = useRouter();
   const [credentials, setCredentials] = useState({ email: "", password: "" })
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-console.log("baseUrl",baseUrl);
-
+  
     const response = await fetch(`${baseUrl}/api/userLogin`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         email: credentials.email,
         password: credentials.password,
-      })
-    })
-    const res = await response.json();
-console.log("res",res);
-
+      }),
+    });
+  
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error("Error:", errorData);
+      alert("Something went wrong! Please try again.");
+      return;
+    }
+  
+    const res = await response.json(); // Only parse JSON if response is valid
+  
+    console.log("res", res);
+  
     if (res.success) {
       localStorage.setItem("token", res.authToken);
       localStorage.setItem("userEmail", credentials.email);
-      localStorage.setItem("isAdmin", await JSON.parse(res.isAdmin));
+      localStorage.setItem("isAdmin", res.isAdmin);
       router.push("/");
+    } else {
+      alert(res.error);
     }
-    else {
-      alert(res.error)
-    }
-  }
+  };
+  
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
