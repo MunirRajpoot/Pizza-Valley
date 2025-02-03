@@ -1,57 +1,65 @@
 import Users from "@/models/Users";
 import db from "@/utils/db";
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export const jwtSecret = process.env.JWT_SECRET || "default_secret";
 
 export default async function handler(req, res) {
+    // CORS Handling
     const allowedOrigins = [
-        'https://pizza-valley.vercel.app',
-        'https://pizza-valley-qqrwwq15q-developer-5k.vercel.app',
+        "https://pizza-valley.vercel.app",
+        "https://pizza-valley-qqrwwq15q-developer-5k.vercel.app",
     ];
 
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
-        res.setHeader('Access-Control-Allow-Origin', origin);
+        res.setHeader("Access-Control-Allow-Origin", origin);
     } else {
-        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader("Access-Control-Allow-Origin", "*");
     }
 
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-    if (req.method === 'OPTIONS') {
-        res.status(200).end();
-        return;
+    if (req.method === "OPTIONS") {
+        return res.status(200).end();
     }
 
+    // Allow only POST requests
     if (req.method !== "POST") {
         return res.status(405).json({ success: false, error: "Method Not Allowed" });
     }
 
     try {
         await db.connect();
+
         const { email, password } = req.body;
 
+        // Check if user exists
         const user = await Users.findOne({ email });
-
         if (!user) {
-            return res.status(400).json({ success: false, error: "Try Login with correct Email..." });
+            return res.status(400).json({ success: false, error: "Invalid email or password." });
         }
 
-        const pwdCompare = await bcrypt.compare(password, user.password);
-        if (!pwdCompare) {
-            return res.status(400).json({ success: false, error: "Try Login with correct Password..." });
+        // Validate password
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+        if (!isPasswordMatch) {
+            return res.status(400).json({ success: false, error: "Invalid email or password." });
         }
 
-        const data = { user: { id: user._id } };
-        const authToken = jwt.sign(data, jwtSecret);
-        const isAdmin = user.isAdmin;
+        // Generate JWT token
+        const tokenPayload = { user: { id: user._id } };
+        const authToken = jwt.sign(tokenPayload, jwtSecret, { expiresIn: "7d" });
 
-        return res.status(200).json({ success: true, authToken, isAdmin });
+        return res.status(200).json({
+            success: true,
+            authToken,
+            isAdmin: user.isAdmin,
+            message: "Login successful!",
+        });
     } catch (error) {
-        console.error("Server Error:", error.message);
+        console.error("Login Error:", error);
         return res.status(500).json({ success: false, error: "Internal Server Error" });
     }
 }

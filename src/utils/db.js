@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
-const mongoURI = process.env.MONGO_URI; 
+const mongoURI = process.env.MONGO_URI || "your-default-mongo-uri";
+if (!mongoURI) {
+    throw new Error("MongoDB URI is not defined. Check your .env file.");
+}
+
 console.log("mongoURI", mongoURI);
 
 

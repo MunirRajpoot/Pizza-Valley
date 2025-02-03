@@ -8,6 +8,7 @@ const Signup = () => {
   const router = useRouter();
   const [credentials, setCredentials] = useState({ name: "", email: "", password: "", location: "" })
 
+console.log("baseUrl",baseUrl);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

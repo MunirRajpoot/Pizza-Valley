@@ -4,7 +4,6 @@ const { baseUrl } = require('./src/utils/baseUrl');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-swcMinify: true,
   images: {
     remotePatterns: [
       {
@@ -21,7 +20,7 @@ swcMinify: true,
   async headers() {
     return [
       {
-        // matching all API routes
+        // Matching all API routes
         source: "/api/:path*",
         headers: [
           { key: "Access-Control-Allow-Credentials", value: "true" },
@@ -30,9 +29,8 @@ swcMinify: true,
           { key: "Access-Control-Allow-Headers", value: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" },
         ]
       }
-    ]
+    ];
   }
-
 };
 
 module.exports = nextConfig;

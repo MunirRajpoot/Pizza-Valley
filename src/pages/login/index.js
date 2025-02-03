@@ -8,6 +8,7 @@ const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" })
   const handleSubmit = async(e) => {
     e.preventDefault();
+console.log("baseUrl",baseUrl);
 
     const response = await fetch(`${baseUrl}/api/userLogin`, {
       method: "POST",
