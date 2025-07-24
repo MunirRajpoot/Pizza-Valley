@@ -7,38 +7,30 @@ if (!mongoURI) {
 
 console.log("mongoURI", mongoURI);
 
-
 const connection = {};
 
 async function connect() {
-    // If already connected, no need to reconnect
     if (connection.isConnected) {
         console.log("Already connected.");
         return;
     }
 
-    // If there are existing connections, check if it's ready
     if (mongoose.connections.length > 0) {
         connection.isConnected = mongoose.connections[0].readyState;
         if (connection.isConnected === 1) {
             console.log("Using the existing connection.");
             return;
         }
-        await mongoose.disconnect(); // Disconnect if not the right state
+        await mongoose.disconnect();
     }
 
-    // Connect to MongoDB
-    const db = await mongoose.connect(mongoURI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
+    const db = await mongoose.connect(mongoURI); // 🔧 Cleaned: removed deprecated options
 
     connection.isConnected = db.connections[0].readyState;
     console.log("Connection established.");
 }
 
 async function disconnect() {
-    // Disconnect only if connected
     if (connection.isConnected) {
         if (process.env.NODE_ENV === "production") {
             await mongoose.disconnect();

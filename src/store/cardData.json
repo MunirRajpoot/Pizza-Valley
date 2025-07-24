@@ -10,7 +10,7 @@
             "large": "219"
         },
         "description": "A hugely popular margherita, with a deliciously tangy single cheese topping",
-        "img": "https://www.dominos.co.in/files/items/Double_Cheese_Margherita.jpg"
+        "img": "/foodDataImages/p-s-tOXiP-2TTyk-unsplash.jpg"
     },
     {
         "id": "2",
@@ -23,7 +23,7 @@
             "large": "219"
         },
         "description": "Treat your taste buds with Double Pepper Barbecue Chicken, Peri-Peri Chicken, Chicken Tikka & Grilled Chicken Rashers",
-        "img": "https://www.dominos.co.in/files/items/MicrosoftTeams-image_(11).png"
+        "img": "/foodDataImages/mona-miller-2MHH_xjkwgw-unsplash.jpg"
     },
     {
         "id": "3",
@@ -36,7 +36,7 @@
             "large": "219"
         },
         "description": "Bite into supreme delight of Black Olives, Onions, Grilled Mushrooms, Pepper BBQ Chicken, Peri-Peri Chicken, Grilled Chicken Rashers",
-        "img": "https://www.dominos.co.in/files/items/MicrosoftTeams-image_(13).png"
+        "img": "/foodDataImages/photo-1708530711878-f9728170f219.avif"
     },
     {
         "id": "4",
@@ -49,7 +49,7 @@
             "large": "219"
         },
         "description": "A classic American taste! Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese",
-        "img": "https://www.dominos.co.in/files/items/MicrosoftTeams-image_(20).png"
+        "img": "/foodDataImages/lily-banse-yA8A4a92JiY-unsplash.jpg"
     },
     {
         "id": "5",
@@ -62,7 +62,7 @@
             "large": "219"
         },
         "description": "Chicken Sausage & Cheese",
-        "img": "https://www.dominos.co.in/files/items/MicrosoftTeams-image_(17).png"
+        "img": "/foodDataImages/farhad-ibrahimzade-dFE0FNVd4k0-unsplash.jpg"
     },
     {
         "id": "6",
@@ -75,7 +75,7 @@
             "large": "219"
         },
         "description": "Pepper Barbecue Chicken | Onion",
-        "img": "https://www.dominos.co.in/files/items/Pepper_Barbeque_&_Onion.jpg"
+        "img": "/foodDataImages/dzoara-castillo-pLsUFfjBq2E-unsplash.jpg"
     },
     {
         "id": "7",
@@ -88,7 +88,7 @@
             "large": "219"
         },
         "description": "A pizza that goes ballistic on veggies! Check out this mouth watering overload of crunchy, crisp capsicum, succulent mushrooms and fresh tomatoes",
-        "img": "https://www.dominos.co.in/files/items/Farmhouse.jpg"
+        "img": "/foodDataImages/joni-gutierrez-Qg_ARJDZx54-unsplash.jpg"
     },
     {
         "id": "8",
@@ -101,7 +101,7 @@
             "large": "219"
         },
         "description": "Chunky paneer with crisp capsicum and spicy red pepper - quite a mouthful!",
-        "img": "https://www.dominos.co.in/files/items/Peppy_Paneer.jpg"
+        "img": "/foodDataImages/drake-whitney-pWqMo3bhv3A-unsplash.jpg"
     },
     {
         "id": "9",
@@ -114,7 +114,7 @@
             "large": "219"
         },
         "description": "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes and jalapeno with a liberal sprinkling of exotic Mexican herbs.",
-        "img": "https://www.dominos.co.in/files/items/Mexican_Green_Wave.jpg"
+        "img": "/foodDataImages/fotografia-de-alimentos-JTBZOI7Mhx8-unsplash.jpg"
     },
     {
         "id": "10",
@@ -127,7 +127,7 @@
             "large": "219"
         },
         "description": "Goldern Corn, Black Olives, Capsicum & Red Paprika",
-        "img": "https://www.dominos.co.in/files/items/Digital_Veggie_Paradise_olo_266x265.jpg"
+        "img": "/foodDataImages/mirko-fabian-0rVn68lBuAc-unsplash.jpg"
     },
     {
         "id": "11",
@@ -139,7 +139,7 @@
             "double": "72"
         },
         "description": "Freshly Baked Garlic Bread stuffed with mozzarella cheese, sweet corns & tangy and spicy jalapeños",
-        "img": "https://www.dominos.co.in/files/items/stuffed-garlic-breadstick_1346070564.webp"
+        "img": "/foodDataImages/mikki-seifu-5ChjsxvnvUQ-unsplash.jpg"
     },
     {
         "id": "12",
@@ -151,7 +151,7 @@
             "double": "72"
         },
         "description": "A crispy flaky wrap filled with Mexican Arancini Bean Patty rolled over a creamy Harissa Sauce.",
-        "img": "https://www.dominos.co.in/files/items/Main_Menu-VG.jpg"
+        "img": "/foodDataImages/fotografia-de-alimentos-6J8Nh4nKeQc-unsplash.jpg"
     },
     {
         "id": "13",
@@ -163,7 +163,7 @@
             "double": "72"
         },
         "description": "A crispy flaky wrap filled with Hot and Smoky Chicken Patty rolled over a creamy Harissa Sauce.",
-        "img": "https://www.dominos.co.in/files/items/Main_Menu-NVG.jpg"
+        "img": "/foodDataImages/alma-agencia-d-n5jDzmKMT8w-unsplash.jpg"
     },
     {
         "id": "14",
@@ -175,6 +175,6 @@
             "double": "72"
         },
         "description": "The endearing tang of garlic in breadstics baked to perfection.",
-        "img": "https://www.dominos.co.in/files/items/garlic-bread.webp"
+        "img": "/foodDataImages/mohamed-hassouna-HDMX9qS3KDA-unsplash.jpg"
     }
 ]
