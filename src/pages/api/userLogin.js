@@ -6,8 +6,9 @@ import jwt from "jsonwebtoken";
 export const jwtSecret = process.env.JWT_SECRET || "default_secret";
 
 export default async function handler(req, res) {
-    // CORS Handling
+    // ✅ Allowed origins (local + production + preview)
     const allowedOrigins = [
+        "http://localhost:3000",
         "https://pizza-valley.vercel.app",
         "https://pizza-valley-qqrwwq15q-developer-5k.vercel.app",
     ];
@@ -16,17 +17,18 @@ export default async function handler(req, res) {
     if (allowedOrigins.includes(origin)) {
         res.setHeader("Access-Control-Allow-Origin", origin);
     } else {
-        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Access-Control-Allow-Origin", "https://pizza-valley.vercel.app"); // fallback
     }
 
     res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
+    // ✅ Handle OPTIONS preflight
     if (req.method === "OPTIONS") {
         return res.status(200).end();
     }
 
-    // Allow only POST requests
+    // ✅ Allow only POST
     if (req.method !== "POST") {
         return res.status(405).json({ success: false, error: "Method Not Allowed" });
     }
