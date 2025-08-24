@@ -8,39 +8,41 @@ const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" })
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    const response = await fetch(`${baseUrl}/api/userLogin`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: credentials.email,
-        password: credentials.password,
-      }),
-    });
-  
-    if (!response.ok) {
-      const errorData = await response.text();
-      console.error("Error:", errorData);
+
+    try {
+      const response = await fetch("/api/userLogin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: credentials.email.trim(),
+          password: credentials.password,
+        }),
+      });
+
+      let res = {};
+      try {
+        res = await response.json();
+      } catch {
+        console.error("Non-JSON response received");
+      }
+
+      if (response.ok && res.success) {
+        localStorage.setItem("token", res.authToken);
+        localStorage.setItem("userEmail", credentials.email);
+        localStorage.setItem("isAdmin", res.isAdmin);
+        router.push("/");
+      } else {
+        alert(res.error || "Login failed! Please try again.");
+      }
+    } catch (err) {
+      console.error("Login error:", err);
       alert("Something went wrong! Please try again.");
-      return;
-    }
-  
-    const res = await response.json(); // Only parse JSON if response is valid
-  
-    console.log("res", res);
-  
-    if (res.success) {
-      localStorage.setItem("token", res.authToken);
-      localStorage.setItem("userEmail", credentials.email);
-      localStorage.setItem("isAdmin", res.isAdmin);
-      router.push("/");
-    } else {
-      alert(res.error);
     }
   };
-  
+
+
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }

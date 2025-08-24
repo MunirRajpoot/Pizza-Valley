@@ -1,4 +1,3 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import Users from '@/models/Users';
 import db from '@/utils/db';
 import bcrypt from 'bcryptjs';

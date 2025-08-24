@@ -17,36 +17,44 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Trim values to avoid sending only spaces
+    // Trim values to avoid sending empty spaces
     const payload = {
       name: credentials.name.trim(),
       email: credentials.email.trim(),
       password: credentials.password,
-      location: credentials.location.trim()
+      location: credentials.location.trim(),
     };
 
-    // Log what's being sent
-    console.log('Sending:', payload);
+    console.log("Sending:", payload);
 
-    const response = await fetch(`${baseUrl}/api/userSignUp`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    });
+    try {
+      const response = await fetch("/api/userSignUp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
 
-    const res = await response.json();
+      // Handle non-JSON or empty responses safely
+      const res = response.headers.get("content-type")?.includes("application/json")
+        ? await response.json()
+        : {};
 
-    if (res.success) {
-      localStorage.setItem('token', res.token);
-      localStorage.setItem('userEmail', credentials.email);
-      localStorage.setItem('isAdmin', res.isAdmin || false);
-      router.push('/');
-    } else {
-      alert(res.error || 'Enter valid credentials...');
+      if (response.ok && res.success) {
+        localStorage.setItem("token", res.token);
+        localStorage.setItem("userEmail", credentials.email);
+        localStorage.setItem("isAdmin", res.isAdmin || false);
+        router.push("/");
+      } else {
+        alert(res.error || "Enter valid credentials...");
+      }
+    } catch (err) {
+      console.error("Signup failed:", err);
+      alert("Something went wrong. Please try again.");
     }
   };
+
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
